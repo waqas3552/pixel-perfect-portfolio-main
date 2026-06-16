@@ -30,7 +30,14 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { Dialog } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogPortal,
+  DialogOverlay,
+  DialogTrigger,
+  DialogClose,
+  DialogContent,
+} from "@/components/ui/dialog";
 import { toast } from "sonner";
 import headshot from "@/assets/headshot.jpg";
 import p1 from "@/assets/project-1.jpg";
@@ -116,64 +123,251 @@ const services = [
   },
 ];
 
-const projects = [
+type Project = {
+  img: string;
+  title: string;
+  category: string;
+  desc: string;
+  tech: string[];
+  span?: string;
+  client: string;
+  year: string;
+  duration: string;
+  role: string;
+  liveUrl: string;
+  challenge: string;
+  solution: string;
+  features: string[];
+  stats: { value: string; label: string }[];
+  gallery: string[];
+};
+
+const projects: Project[] = [
   {
     img: p1,
     title: "Lumen Apparel",
     category: "WooCommerce",
-    desc: "Fashion store with 240% revenue lift in 6 months.",
+    desc: "Fashion store with a polished commerce experience and faster checkout.",
     tech: ["WooCommerce", "ACF", "Stripe"],
     span: "md:col-span-2 md:row-span-2",
+    client: "Lumen Apparel",
+    year: "2024",
+    duration: "8 weeks",
+    role: "Lead Developer",
+    liveUrl: "https://lumenapparel.example",
+    challenge:
+      "The existing store was slow, hard to navigate, and losing customers during checkout.",
+    solution:
+      "Rebuilt the WooCommerce experience with optimized filtering, a slick cross-sell flow, and mobile-first performance improvements.",
+    features: [
+      "Fast product discovery with filters",
+      "One-click quick buy experience",
+      "Optimized checkout flow",
+      "Responsive hero merchandising",
+    ],
+    stats: [
+      { value: "240%", label: "Revenue lift" },
+      { value: "94+", label: "Lighthouse" },
+      { value: "3x", label: "Add to cart rate" },
+    ],
+    gallery: [p1, p2, p3],
   },
   {
     img: p2,
     title: "Saunity SaaS",
     category: "Landing Page",
-    desc: "Conversion-focused SaaS site with A/B testing.",
+    desc: "Conversion-focused SaaS landing page with strong visual storytelling.",
     tech: ["Elementor Pro", "GSAP"],
+    client: "Saunity",
+    year: "2023",
+    duration: "6 weeks",
+    role: "Frontend & Optimization",
+    liveUrl: "https://saunity.example",
+    challenge:
+      "The product story was unclear and visitor attention dropped before signup.",
+    solution:
+      "Crafted a conversion-led layout with polished animations, trust elements, and clear CTA hierarchy.",
+    features: [
+      "Animated onboarding sections",
+      "Sticky CTA panel",
+      "Case study testimonials",
+      "Performance-first asset loading",
+    ],
+    stats: [
+      { value: "+32%", label: "Signup rate" },
+      { value: "85%", label: "Engagement" },
+      { value: "70+", label: "Accessibility" },
+    ],
+    gallery: [p2, p4, p6],
   },
   {
     img: p3,
     title: "Letsinclay Bistro",
     category: "Restaurant",
-    desc: "Reservations, menu & ordering for a Michelin-recommended bistro.",
+    desc: "Reservation-first restaurant website built for higher bookings.",
     tech: ["WordPress", "OpenTable"],
+    client: "Letsinclay Bistro",
+    year: "2023",
+    duration: "7 weeks",
+    role: "WordPress Lead",
+    liveUrl: "https://letsinclay.example",
+    challenge:
+      "The old menu site was static, slow, and did not support online reservations well.",
+    solution:
+      "Delivered a fresh editorial layout with booking integration, menu highlights, and local SEO improvements.",
+    features: [
+      "Reservations with OpenTable",
+      "Menu spotlight sections",
+      "Editorial recipe showcase",
+      "Local SEO enhancements",
+    ],
+    stats: [
+      { value: "3x", label: "Reservations" },
+      { value: "98%", label: "Mobile score" },
+      { value: "2x", label: "Pageviews" },
+    ],
+    gallery: [p3, p5, p8],
   },
   {
     img: p4,
     title: "Ertel Consulting",
     category: "Corporate",
-    desc: "Multilingual corporate site with HubSpot CRM sync.",
+    desc: "Multilingual corporate site with CRM and enterprise polish.",
     tech: ["Custom Theme", "WPML"],
+    client: "Ertel Consulting",
+    year: "2023",
+    duration: "9 weeks",
+    role: "Theme Architect",
+    liveUrl: "https://ertel.example",
+    challenge:
+      "The legacy corporate site was outdated, slow, and did not support multiple languages.",
+    solution:
+      "Built a flexible WPML-powered site with HubSpot CRM capture, polished brand moments, and fast performance.",
+    features: [
+      "Multilingual content system",
+      "HubSpot lead capture",
+      "Custom case study layout",
+      "Enterprise performance tuning",
+    ],
+    stats: [
+      { value: "+48%", label: "Conversions" },
+      { value: "25%", label: "Bounce down" },
+      { value: "96+", label: "Lighthouse" },
+    ],
+    gallery: [p4, p1, p7],
   },
   {
     img: p5,
     title: "Redagry Realty",
     category: "Real Estate",
-    desc: "IDX-integrated property portal with map search.",
+    desc: "IDX-integrated property portal with modern search and listings.",
     tech: ["WooCommerce", "Mapbox"],
     span: "md:col-span-2",
+    client: "Redagry Realty",
+    year: "2024",
+    duration: "10 weeks",
+    role: "Props & Search Lead",
+    liveUrl: "https://redagry.example",
+    challenge:
+      "The previous property portal was hard to search and did not highlight featured listings.",
+    solution:
+      "Delivered map-led search, featured property cards, and fast image loading for luxury listings.",
+    features: [
+      "Mapbox property search",
+      "Featured listing galleries",
+      "Custom agent profile pages",
+      "Mobile-first property filters",
+    ],
+    stats: [
+      { value: "2x", label: "Leads" },
+      { value: "80%", label: "Search usage" },
+      { value: "91", label: "Lighthouse" },
+    ],
+    gallery: [p5, p6, p2],
   },
   {
     img: p6,
     title: "TKTravel Journal",
     category: "Magazine",
-    desc: "Editorial travel blog scaled to 1.2M monthly readers.",
+    desc: "Editorial travel magazine scaled to 1.2M monthly readers.",
     tech: ["Gutenberg", "AMP"],
+    client: "TKTravel Media",
+    year: "2023",
+    duration: "12 weeks",
+    role: "Performance Engineer",
+    liveUrl: "https://tktravel.example",
+    challenge:
+      "The old magazine stack could not handle peak readership or ad traffic efficiently.",
+    solution:
+      "Migrated to AMP templates, integrated Cloudflare APO, and optimized editorial workflows for speed and scale.",
+    features: [
+      "AMP article templates",
+      "Cloudflare APO caching",
+      "Editorial workflow improvements",
+      "Programmatic ad ops integration",
+    ],
+    stats: [
+      { value: "1.2M", label: "Readers" },
+      { value: "-72%", label: "TTFB" },
+      { value: "+45%", label: "Ad RPM" },
+    ],
+    gallery: [p6, p8, p3],
   },
   {
     img: p7,
     title: "Fitnesm Gym",
     category: "Membership",
-    desc: "Class booking + member portal with Stripe subscriptions.",
+    desc: "Member portal and booking site for a modern fitness brand.",
     tech: ["MemberPress", "ACF"],
+    client: "Fitnesm Gym",
+    year: "2024",
+    duration: "7 weeks",
+    role: "Membership Specialist",
+    liveUrl: "https://fitnesm.example",
+    challenge:
+      "The gym needed a seamless class booking experience and membership dashboard.",
+    solution:
+      "Built a member portal with recurring subscriptions, booking flows, and branded training pages.",
+    features: [
+      "Recurring subscription checkout",
+      "Class booking dashboard",
+      "Member-only resources",
+      "Branded workout pages",
+    ],
+    stats: [
+      { value: "+28%", label: "Memberships" },
+      { value: "4.8", label: "Rating" },
+      { value: "93", label: "Lighthouse" },
+    ],
+    gallery: [p7, p2, p4],
   },
   {
     img: p8,
     title: "Dacorladie Photo",
     category: "Portfolio",
-    desc: "Award-winning photographer portfolio with lazy gallery.",
+    desc: "Award-winning photographer portfolio with elegant gallery blocks.",
     tech: ["Custom Theme", "GraphQL"],
+    client: "Dacorladie Photography",
+    year: "2024",
+    duration: "5 weeks",
+    role: "Portfolio Designer",
+    liveUrl: "https://dacorladie.example",
+    challenge:
+      "The portfolio needed a beautiful visual presentation with fast image loading.",
+    solution:
+      "Designed a lightweight theme with immersive gallery layouts and optimized image delivery.",
+    features: [
+      "Full-screen galleries",
+      "Gallery filtering",
+      "Optimized image loading",
+      "Minimal portfolio layout",
+    ],
+    stats: [
+      { value: "+50%", label: "Engagement" },
+      { value: "98", label: "Lighthouse" },
+      { value: "12", label: "Featured awards" },
+    ],
+    gallery: [p8, p1, p5],
   },
 ];
 
@@ -493,7 +687,7 @@ function Projects() {
   const [selectedProject, setSelectedProject] = useState<typeof projects[number] | null>(null);
 
   return (
-    <Dialog.Root
+    <Dialog
       open={selectedProject !== null}
       onOpenChange={(open) => {
         if (!open) setSelectedProject(null);
@@ -508,7 +702,7 @@ function Projects() {
           />
           <div className="grid auto-rows-[220px] grid-cols-1 gap-5 md:grid-cols-4">
             {projects.map((p) => (
-              <Dialog.Trigger asChild key={p.title}>
+              <DialogTrigger asChild key={p.title}>
                 <button
                   type="button"
                   onClick={() => setSelectedProject(p)}
@@ -542,83 +736,150 @@ function Projects() {
                     <MoveRight className="h-4 w-4" />
                   </div>
                 </button>
-              </Dialog.Trigger>
+              </DialogTrigger>
             ))}
           </div>
         </div>
       </section>
 
       {selectedProject && (
-        <Dialog.Portal>
-          <Dialog.Overlay />
-          <Dialog.Content className="max-w-5xl rounded-[2rem] border border-border p-6 shadow-2xl sm:p-8">
-            <div className="grid gap-8 lg:grid-cols-[1.4fr_0.9fr]">
+        <DialogPortal>
+          <DialogOverlay />
+          <DialogContent className="max-w-6xl rounded-[2rem] border border-border p-6 shadow-2xl sm:p-8">
+            <div className="grid gap-8 xl:grid-cols-[1.8fr_1.2fr]">
               <div className="space-y-6">
-                <div className="flex flex-wrap gap-3">
-                  <Badge className="rounded-full border-0 px-4 py-2 text-sm">Project case study</Badge>
+                <div className="flex flex-wrap items-center gap-3">
+                  <Badge className="rounded-full border-0 px-4 py-2 text-sm">{selectedProject.category}</Badge>
                   <Badge variant="secondary" className="rounded-full px-4 py-2 text-sm">
-                    {selectedProject.category}
+                    {selectedProject.year}
                   </Badge>
                 </div>
                 <div className="space-y-4">
-                  <h2 className="text-3xl font-black tracking-tight sm:text-4xl">
+                  <h2 className="text-4xl font-black tracking-tight sm:text-5xl">
                     {selectedProject.title}
                   </h2>
-                  <p className="max-w-2xl text-lg leading-8 text-muted-foreground">
+                  <p className="max-w-3xl text-lg leading-8 text-muted-foreground">
                     {selectedProject.desc}
                   </p>
                 </div>
                 <div className="grid gap-4 sm:grid-cols-2">
-                  <div className="rounded-3xl border border-border bg-background p-6">
-                    <div className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Key result</div>
-                    <div className="mt-3 text-2xl font-black text-foreground">240% growth</div>
+                  {[
+                    { label: "Client", value: selectedProject.client },
+                    { label: "Duration", value: selectedProject.duration },
+                    { label: "Role", value: selectedProject.role },
+                    { label: "Location", value: "Remote" },
+                  ].map((item) => (
+                    <div key={item.label} className="glass rounded-3xl border border-border p-6">
+                      <div className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
+                        {item.label}
+                      </div>
+                      <div className="mt-3 text-xl font-semibold text-foreground">{item.value}</div>
+                    </div>
+                  ))}
+                </div>
+                <div className="grid gap-4 lg:grid-cols-2">
+                  <div className="glass rounded-3xl border border-border p-6">
+                    <div className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
+                      The challenge
+                    </div>
+                    <p className="mt-4 text-sm leading-7 text-muted-foreground">{selectedProject.challenge}</p>
                   </div>
-                  <div className="rounded-3xl border border-border bg-background p-6">
-                    <div className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Timeline</div>
-                    <div className="mt-3 text-2xl font-black text-foreground">8 weeks</div>
+                  <div className="glass rounded-3xl border border-border p-6">
+                    <div className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
+                      The solution
+                    </div>
+                    <p className="mt-4 text-sm leading-7 text-muted-foreground">{selectedProject.solution}</p>
                   </div>
                 </div>
                 <div className="grid gap-4 sm:grid-cols-2">
-                  {selectedProject.tech.map((tech) => (
-                    <span
-                      key={tech}
-                      className="rounded-full border border-border bg-background px-3 py-2 text-sm text-foreground/90"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+                  <div className="glass rounded-3xl border border-border p-6">
+                    <div className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
+                      What I built
+                    </div>
+                    <ul className="mt-5 space-y-3 text-sm text-muted-foreground">
+                      {selectedProject.features.map((feature) => (
+                        <li key={feature} className="flex gap-3">
+                          <span className="grid h-6 w-6 place-items-center rounded-full bg-primary/10 text-primary">
+                            <CheckCircle2 className="h-4 w-4" />
+                          </span>
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="glass rounded-3xl border border-border p-6">
+                    <div className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Tech used</div>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {selectedProject.tech.map((tech) => (
+                        <span
+                          key={tech}
+                          className="rounded-full border border-border bg-background px-3 py-2 text-sm text-foreground/90"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="rounded-[2rem] overflow-hidden border border-border bg-muted">
-                <img
-                  src={selectedProject.img}
-                  alt={selectedProject.title}
-                  className="h-full w-full object-cover"
-                />
+              <div className="space-y-6">
+                <div className="h-[420px] overflow-hidden rounded-[2rem] border border-border bg-muted">
+                  <img
+                    src={selectedProject.img}
+                    alt={selectedProject.title}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <div className="grid gap-4 sm:grid-cols-3">
+                  {selectedProject.stats.map((stat) => (
+                    <div key={stat.label} className="glass rounded-3xl border border-border p-6 text-center">
+                      <div className="text-3xl font-black text-foreground">{stat.value}</div>
+                      <div className="mt-2 text-xs uppercase tracking-[0.3em] text-muted-foreground">
+                        {stat.label}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="glass rounded-[2rem] border border-border p-6">
+                  <div className="mb-4 flex items-center justify-between gap-3">
+                    <div>
+                      <div className="text-xs uppercase tracking-[0.3em] text-muted-foreground">A closer look</div>
+                      <h3 className="text-xl font-bold">Gallery</h3>
+                    </div>
+                    <div className="text-xs text-muted-foreground">Scroll for more</div>
+                  </div>
+                  <div className="grid gap-4 sm:grid-cols-3">
+                    {selectedProject.gallery.map((img, index) => (
+                      <div key={index} className="overflow-hidden rounded-3xl border border-border bg-background">
+                        <img src={img} alt={`${selectedProject.title} screenshot ${index + 1}`} className="h-32 w-full object-cover" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-end">
-              <Dialog.Close asChild>
+              <a
+                href={selectedProject.liveUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center rounded-xl bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition hover:bg-primary/90"
+              >
+                Visit live site
+              </a>
+              <DialogClose asChild>
                 <button
                   type="button"
                   className="inline-flex items-center justify-center rounded-xl border border-input bg-background px-5 py-3 text-sm font-medium text-foreground transition hover:bg-accent"
                 >
                   Close
                 </button>
-              </Dialog.Close>
-              <Dialog.Close asChild>
-                <button
-                  type="button"
-                  className="inline-flex items-center justify-center rounded-xl bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition hover:bg-primary/90"
-                >
-                  Start a project
-                </button>
-              </Dialog.Close>
+              </DialogClose>
             </div>
-          </Dialog.Content>
-        </Dialog.Portal>
+          </DialogContent>
+        </DialogPortal>
       )}
-    </Dialog.Root>
+    </Dialog>
   );
 }
 
