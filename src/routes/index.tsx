@@ -1,14 +1,36 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import {
-  ArrowRight, Download, Mail, Phone, MapPin, Github, Linkedin, MessageCircle,
-  Code2, ShoppingCart, Gauge, Bug, Wrench, Search, MoveRight, Globe,
-  Star, CheckCircle2, Sparkles, Trophy, Users, Clock, Quote, Send,
+  ArrowRight,
+  Download,
+  Mail,
+  Phone,
+  MapPin,
+  Github,
+  Linkedin,
+  MessageCircle,
+  Code2,
+  ShoppingCart,
+  Gauge,
+  Bug,
+  Wrench,
+  Search,
+  MoveRight,
+  Globe,
+  Star,
+  CheckCircle2,
+  Sparkles,
+  Trophy,
+  Users,
+  Clock,
+  Quote,
+  Send,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
+import { Dialog } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import headshot from "@/assets/headshot.jpg";
 import p1 from "@/assets/project-1.jpg";
@@ -23,46 +45,143 @@ import p8 from "@/assets/project-8.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Alex Morgan — Senior WordPress Developer | 5+ Years Experience" },
-      { name: "description", content: "Senior WordPress developer specializing in WooCommerce, custom themes, Elementor, ACF, performance & SEO. Hire a proven WP expert." },
+      { title: "Muhammad Waqas — Senior WordPress Developer | 5+ Years Experience" },
+      {
+        name: "description",
+        content:
+          "Senior WordPress developer specializing in WooCommerce, custom themes, Elementor, ACF, performance & SEO. Hire a proven WP expert.",
+      },
     ],
   }),
   component: Portfolio,
 });
 
 const skills = [
-  "WordPress", "WooCommerce", "Elementor Pro", "PHP", "HTML5", "CSS3",
-  "JavaScript", "MySQL", "ACF", "WPBakery", "SEO Optimization",
-  "Performance Optimization", "Website Migration", "cPanel & Hosting",
+  "WordPress",
+  "WooCommerce",
+  "Elementor Pro",
+  "PHP",
+  "HTML5",
+  "CSS3",
+  "JavaScript",
+  "MySQL",
+  "ACF",
+  "WPBakery",
+  "SEO Optimization",
+  "Performance Optimization",
+  "Website Migration",
+  "cPanel & Hosting",
 ];
 
 const services = [
-  { icon: Code2, title: "Custom WordPress Development", desc: "Tailored themes & plugins built to your exact spec — clean, secure, scalable code." },
-  { icon: ShoppingCart, title: "WooCommerce Stores", desc: "High-converting online stores with payments, shipping, subscriptions and analytics." },
-  { icon: Sparkles, title: "Elementor Website Design", desc: "Pixel-perfect Elementor Pro builds with custom widgets and global styles." },
-  { icon: Gauge, title: "Speed Optimization", desc: "Sub-1.5s LCP, 90+ Core Web Vitals, caching, image & query optimization." },
-  { icon: Bug, title: "Bug Fixes & Debugging", desc: "Fast resolution of plugin conflicts, white screens, broken layouts and errors." },
-  { icon: Wrench, title: "Website Maintenance", desc: "Updates, backups, security hardening and uptime monitoring — handled monthly." },
-  { icon: Search, title: "SEO Setup", desc: "Yoast/Rank Math configuration, schema, sitemaps and on-page optimization." },
-  { icon: Globe, title: "Website Migration", desc: "Zero-downtime moves between hosts, domains or staging environments." },
+  {
+    icon: Code2,
+    title: "Custom WordPress Development",
+    desc: "Tailored themes & plugins built to your exact spec — clean, secure, scalable code.",
+  },
+  {
+    icon: ShoppingCart,
+    title: "WooCommerce Stores",
+    desc: "High-converting online stores with payments, shipping, subscriptions and analytics.",
+  },
+  {
+    icon: Sparkles,
+    title: "Elementor Website Design",
+    desc: "Pixel-perfect Elementor Pro builds with custom widgets and global styles.",
+  },
+  {
+    icon: Gauge,
+    title: "Speed Optimization",
+    desc: "Sub-1.5s LCP, 90+ Core Web Vitals, caching, image & query optimization.",
+  },
+  {
+    icon: Bug,
+    title: "Bug Fixes & Debugging",
+    desc: "Fast resolution of plugin conflicts, white screens, broken layouts and errors.",
+  },
+  {
+    icon: Wrench,
+    title: "Website Maintenance",
+    desc: "Updates, backups, security hardening and uptime monitoring — handled monthly.",
+  },
+  {
+    icon: Search,
+    title: "SEO Setup",
+    desc: "Yoast/Rank Math configuration, schema, sitemaps and on-page optimization.",
+  },
+  {
+    icon: Globe,
+    title: "Website Migration",
+    desc: "Zero-downtime moves between hosts, domains or staging environments.",
+  },
 ];
 
 const projects = [
-  { img: p1, title: "Lumen Apparel", category: "WooCommerce", desc: "Fashion store with 240% revenue lift in 6 months.", tech: ["WooCommerce", "ACF", "Stripe"], span: "md:col-span-2 md:row-span-2" },
-  { img: p2, title: "Saunity SaaS", category: "Landing Page", desc: "Conversion-focused SaaS site with A/B testing.", tech: ["Elementor Pro", "GSAP"] },
-  { img: p3, title: "Letsinclay Bistro", category: "Restaurant", desc: "Reservations, menu & ordering for a Michelin-recommended bistro.", tech: ["WordPress", "OpenTable"] },
-  { img: p4, title: "Ertel Consulting", category: "Corporate", desc: "Multilingual corporate site with HubSpot CRM sync.", tech: ["Custom Theme", "WPML"] },
-  { img: p5, title: "Redagry Realty", category: "Real Estate", desc: "IDX-integrated property portal with map search.", tech: ["WooCommerce", "Mapbox"], span: "md:col-span-2" },
-  { img: p6, title: "TKTravel Journal", category: "Magazine", desc: "Editorial travel blog scaled to 1.2M monthly readers.", tech: ["Gutenberg", "AMP"] },
-  { img: p7, title: "Fitnesm Gym", category: "Membership", desc: "Class booking + member portal with Stripe subscriptions.", tech: ["MemberPress", "ACF"] },
-  { img: p8, title: "Dacorladie Photo", category: "Portfolio", desc: "Award-winning photographer portfolio with lazy gallery.", tech: ["Custom Theme", "GraphQL"] },
+  {
+    img: p1,
+    title: "Lumen Apparel",
+    category: "WooCommerce",
+    desc: "Fashion store with 240% revenue lift in 6 months.",
+    tech: ["WooCommerce", "ACF", "Stripe"],
+    span: "md:col-span-2 md:row-span-2",
+  },
+  {
+    img: p2,
+    title: "Saunity SaaS",
+    category: "Landing Page",
+    desc: "Conversion-focused SaaS site with A/B testing.",
+    tech: ["Elementor Pro", "GSAP"],
+  },
+  {
+    img: p3,
+    title: "Letsinclay Bistro",
+    category: "Restaurant",
+    desc: "Reservations, menu & ordering for a Michelin-recommended bistro.",
+    tech: ["WordPress", "OpenTable"],
+  },
+  {
+    img: p4,
+    title: "Ertel Consulting",
+    category: "Corporate",
+    desc: "Multilingual corporate site with HubSpot CRM sync.",
+    tech: ["Custom Theme", "WPML"],
+  },
+  {
+    img: p5,
+    title: "Redagry Realty",
+    category: "Real Estate",
+    desc: "IDX-integrated property portal with map search.",
+    tech: ["WooCommerce", "Mapbox"],
+    span: "md:col-span-2",
+  },
+  {
+    img: p6,
+    title: "TKTravel Journal",
+    category: "Magazine",
+    desc: "Editorial travel blog scaled to 1.2M monthly readers.",
+    tech: ["Gutenberg", "AMP"],
+  },
+  {
+    img: p7,
+    title: "Fitnesm Gym",
+    category: "Membership",
+    desc: "Class booking + member portal with Stripe subscriptions.",
+    tech: ["MemberPress", "ACF"],
+  },
+  {
+    img: p8,
+    title: "Dacorladie Photo",
+    category: "Portfolio",
+    desc: "Award-winning photographer portfolio with lazy gallery.",
+    tech: ["Custom Theme", "GraphQL"],
+  },
 ];
 
 const experience = [
   {
-    period: "2023 — Present",
+    period: "2021 — Present",
     role: "Senior WordPress Developer",
-    company: "Freelance · Remote",
+    company: "Emaan Creation",
     points: [
       "Delivered 60+ WooCommerce & custom theme projects for clients across 14 countries",
       "Average Lighthouse score lift from 42 → 94 across migrations",
@@ -70,9 +189,9 @@ const experience = [
     ],
   },
   {
-    period: "2021 — 2023",
+    period: "2021 — 2021",
     role: "WordPress Developer",
-    company: "Pixelforge Digital Agency",
+    company: "Web Hunter",
     points: [
       "Built bespoke Elementor & Gutenberg sites for agency clients ($5k–$50k range)",
       "Led migration of legacy WP Bakery sites to modern Elementor Pro stack",
@@ -82,7 +201,7 @@ const experience = [
   {
     period: "2020 — 2021",
     role: "Junior WordPress Developer",
-    company: "Nimbus Studio",
+    company: "1Dot Digital",
     points: [
       "Customized themes & plugins, integrated ACF and built reusable blocks",
       "Owned page-speed optimization track — average TTFB cut by 60%",
@@ -98,10 +217,30 @@ const certs = [
 ];
 
 const testimonials = [
-  { name: "Sarah Chen", role: "Founder, Lumen Apparel", quote: "Alex rebuilt our WooCommerce store from the ground up. Revenue doubled in 4 months and the site finally feels premium. Worth every penny." },
-  { name: "Marcus Holt", role: "CMO, Ertel Consulting", quote: "The most reliable WP developer we've worked with. Clear communication, ships on time, and his code is genuinely clean. Already booked him for our next project." },
-  { name: "Priya Raman", role: "Owner, Letsinclay Bistro", quote: "He took our outdated site and turned it into something we're proud to share. Reservations up 3x and zero downtime during the migration." },
-  { name: "David Okafor", role: "Editor, TKTravel", quote: "Scaling to over a million readers required serious WordPress chops. Alex handled caching, CDN, and Core Web Vitals like a pro." },
+  {
+    name: "Sarah Chen",
+    role: "Founder, Lumen Apparel",
+    quote:
+      "Alex rebuilt our WooCommerce store from the ground up. Revenue doubled in 4 months and the site finally feels premium. Worth every penny.",
+  },
+  {
+    name: "Marcus Holt",
+    role: "CMO, Ertel Consulting",
+    quote:
+      "The most reliable WP developer we've worked with. Clear communication, ships on time, and his code is genuinely clean. Already booked him for our next project.",
+  },
+  {
+    name: "Priya Raman",
+    role: "Owner, Letsinclay Bistro",
+    quote:
+      "He took our outdated site and turned it into something we're proud to share. Reservations up 3x and zero downtime during the migration.",
+  },
+  {
+    name: "David Okafor",
+    role: "Editor, TKTravel",
+    quote:
+      "Scaling to over a million readers required serious WordPress chops. Alex handled caching, CDN, and Core Web Vitals like a pro.",
+  },
 ];
 
 function Nav() {
@@ -117,13 +256,17 @@ function Nav() {
     <header className="fixed top-4 left-1/2 z-50 w-[min(96%,1100px)] -translate-x-1/2">
       <nav className="glass-strong flex items-center justify-between rounded-2xl px-4 py-3 sm:px-6">
         <a href="#" className="flex items-center gap-2 font-bold tracking-tight">
-          <span className="grid h-8 w-8 place-items-center rounded-lg bg-primary text-primary-foreground">A</span>
-          <span className="hidden sm:inline">Alex Morgan</span>
+          <span className="grid h-8 w-8 place-items-center rounded-lg bg-primary text-primary-foreground">
+            M
+          </span>
+          <span className="hidden sm:inline">Muhammad Waqas</span>
         </a>
         <ul className="hidden items-center gap-7 text-sm text-muted-foreground md:flex">
           {links.map((l) => (
             <li key={l.href}>
-              <a href={l.href} className="transition-colors hover:text-foreground">{l.label}</a>
+              <a href={l.href} className="transition-colors hover:text-foreground">
+                {l.label}
+              </a>
             </li>
           ))}
         </ul>
@@ -141,31 +284,45 @@ function Hero() {
   return (
     <section className="relative overflow-hidden pt-36 pb-24 sm:pt-44 sm:pb-32">
       <div className="bg-grid absolute inset-0 opacity-60" />
-      <div
-        className="absolute inset-0"
-        style={{ background: "var(--grad-hero)" }}
-      />
+      <div className="absolute inset-0" style={{ background: "var(--grad-hero)" }} />
       <div className="absolute left-1/2 top-1/3 -z-0 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-primary/20 blur-[120px]" />
       <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-6 md:grid-cols-[1fr_auto]">
         <div className="min-w-0 animate-fade-in">
           <Badge className="glass rounded-full border-0 px-4 py-1.5 text-xs font-medium text-foreground">
-            <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-primary" /> Available for new projects · June 2026
+            <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-primary" /> Available for
+            new projects · June 2026
           </Badge>
           <h1 className="mt-6 text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
-            Hi, I'm Alex.<br />
-            <span className="text-gradient">Senior WordPress</span><br />
+            Hi, I'm Waqas.
+            <br />
+            <span className="text-gradient">Senior WordPress</span>
+            <br />
             Developer.
           </h1>
           <p className="mt-4 text-base font-semibold text-primary">
             WordPress Developer · 5+ Years Experience
           </p>
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
-            I build fast, secure, conversion-focused WordPress &amp; WooCommerce sites — from custom themes and plugins to performance tuning and on-page SEO. Trusted by 60+ founders, agencies and editors worldwide.
+            I build fast, secure, conversion-focused WordPress &amp; WooCommerce sites — from custom
+            themes and plugins to performance tuning and on-page SEO. Trusted by 60+ founders,
+            agencies and editors worldwide.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <a href="#contact"><Button size="lg" className="glow-ring rounded-xl">Hire Me <ArrowRight className="ml-1 h-4 w-4" /></Button></a>
-            <a href="#projects"><Button size="lg" variant="secondary" className="rounded-xl">View Projects</Button></a>
-            <a href="#contact"><Button size="lg" variant="ghost" className="rounded-xl"><Download className="mr-1 h-4 w-4" /> Download CV</Button></a>
+            <a href="#contact">
+              <Button size="lg" className="glow-ring rounded-xl">
+                Hire Me <ArrowRight className="ml-1 h-4 w-4" />
+              </Button>
+            </a>
+            <a href="#projects">
+              <Button size="lg" variant="secondary" className="rounded-xl">
+                View Projects
+              </Button>
+            </a>
+            <a href="#contact">
+              <Button size="lg" variant="ghost" className="rounded-xl">
+                <Download className="mr-1 h-4 w-4" /> Download CV
+              </Button>
+            </a>
           </div>
           <dl className="mt-12 grid max-w-md grid-cols-3 gap-6 border-t border-border pt-6">
             {[
@@ -233,10 +390,20 @@ function About() {
         <div className="grid gap-6 md:grid-cols-3">
           <div className="glass rounded-3xl p-8 md:col-span-2">
             <p className="text-lg leading-relaxed text-foreground/90">
-              I'm a senior WordPress developer with <span className="font-semibold text-foreground">5+ years</span> of professional experience designing, developing and maintaining WordPress websites for founders, agencies and publishers around the world. My focus is clean code, measurable performance and delivering on time — every time.
+              I'm a senior WordPress developer with{" "}
+              <span className="font-semibold text-foreground">5+ years</span> of professional
+              experience designing, developing and maintaining WordPress websites for founders,
+              agencies and publishers around the world. My focus is clean code, measurable
+              performance and delivering on time — every time.
             </p>
             <p className="mt-4 leading-relaxed text-muted-foreground">
-              Day to day I work across <span className="text-foreground">Elementor Pro, Gutenberg, WooCommerce, Advanced Custom Fields (ACF), custom theme &amp; plugin development, page-speed optimization and website security</span>. I treat every project as if it were my own business — from initial architecture to launch and beyond.
+              Day to day I work across{" "}
+              <span className="text-foreground">
+                Elementor Pro, Gutenberg, WooCommerce, Advanced Custom Fields (ACF), custom theme
+                &amp; plugin development, page-speed optimization and website security
+              </span>
+              . I treat every project as if it were my own business — from initial architecture to
+              launch and beyond.
             </p>
           </div>
           <div className="glass space-y-5 rounded-3xl p-8">
@@ -266,7 +433,11 @@ function Skills() {
   return (
     <section id="skills" className="relative py-24">
       <div className="mx-auto max-w-6xl px-6">
-        <SectionHeader kicker="Stack" title="Tools I use every day" sub="From custom PHP to pixel-perfect Elementor builds — the full WordPress toolkit." />
+        <SectionHeader
+          kicker="Stack"
+          title="Tools I use every day"
+          sub="From custom PHP to pixel-perfect Elementor builds — the full WordPress toolkit."
+        />
         <div className="flex flex-wrap justify-center gap-3">
           {skills.map((s) => (
             <span
@@ -297,7 +468,9 @@ function Experience() {
                     <h3 className="text-xl font-bold">{e.role}</h3>
                     <div className="text-sm text-primary">{e.company}</div>
                   </div>
-                  <Badge variant="secondary" className="rounded-full">{e.period}</Badge>
+                  <Badge variant="secondary" className="rounded-full">
+                    {e.period}
+                  </Badge>
                 </div>
                 <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
                   {e.points.map((p) => (
@@ -317,42 +490,135 @@ function Experience() {
 }
 
 function Projects() {
+  const [selectedProject, setSelectedProject] = useState<typeof projects[number] | null>(null);
+
   return (
-    <section id="projects" className="relative py-24">
-      <div className="mx-auto max-w-7xl px-6">
-        <SectionHeader kicker="Selected Work" title="Recent WordPress projects" sub="A bento-grid sampling of stores, blogs and corporate sites I've shipped." />
-        <div className="grid auto-rows-[220px] grid-cols-1 gap-5 md:grid-cols-4">
-          {projects.map((p) => (
-            <a
-              key={p.title}
-              href="#"
-              className={`group glass relative overflow-hidden rounded-3xl ${p.span ?? ""}`}
-            >
-              <img
-                src={p.img}
-                alt={p.title}
-                loading="lazy"
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/10" />
-              <div className="absolute inset-x-0 bottom-0 p-5">
-                <div className="text-[10px] font-semibold uppercase tracking-widest text-primary">{p.category}</div>
-                <h3 className="mt-1 text-lg font-bold leading-tight">{p.title}</h3>
-                <p className="mt-1 line-clamp-2 text-xs text-muted-foreground">{p.desc}</p>
-                <div className="mt-3 flex flex-wrap gap-1.5">
-                  {p.tech.map((t) => (
-                    <span key={t} className="rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-medium">{t}</span>
+    <Dialog.Root
+      open={selectedProject !== null}
+      onOpenChange={(open) => {
+        if (!open) setSelectedProject(null);
+      }}
+    >
+      <section id="projects" className="relative py-24">
+        <div className="mx-auto max-w-7xl px-6">
+          <SectionHeader
+            kicker="Selected Work"
+            title="Recent WordPress projects"
+            sub="A bento-grid sampling of stores, blogs and corporate sites I've shipped."
+          />
+          <div className="grid auto-rows-[220px] grid-cols-1 gap-5 md:grid-cols-4">
+            {projects.map((p) => (
+              <Dialog.Trigger asChild key={p.title}>
+                <button
+                  type="button"
+                  onClick={() => setSelectedProject(p)}
+                  className={`group glass relative overflow-hidden rounded-3xl text-left ${p.span ?? ""}`}
+                >
+                  <img
+                    src={p.img}
+                    alt={p.title}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/10" />
+                  <div className="absolute inset-x-0 bottom-0 p-5">
+                    <div className="text-[10px] font-semibold uppercase tracking-widest text-primary">
+                      {p.category}
+                    </div>
+                    <h3 className="mt-1 text-lg font-bold leading-tight">{p.title}</h3>
+                    <p className="mt-1 line-clamp-2 text-xs text-muted-foreground">{p.desc}</p>
+                    <div className="mt-3 flex flex-wrap gap-1.5">
+                      {p.tech.map((t) => (
+                        <span
+                          key={t}
+                          className="rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-medium"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-xl bg-primary text-primary-foreground opacity-0 transition-opacity group-hover:opacity-100">
+                    <MoveRight className="h-4 w-4" />
+                  </div>
+                </button>
+              </Dialog.Trigger>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {selectedProject && (
+        <Dialog.Portal>
+          <Dialog.Overlay />
+          <Dialog.Content className="max-w-5xl rounded-[2rem] border border-border p-6 shadow-2xl sm:p-8">
+            <div className="grid gap-8 lg:grid-cols-[1.4fr_0.9fr]">
+              <div className="space-y-6">
+                <div className="flex flex-wrap gap-3">
+                  <Badge className="rounded-full border-0 px-4 py-2 text-sm">Project case study</Badge>
+                  <Badge variant="secondary" className="rounded-full px-4 py-2 text-sm">
+                    {selectedProject.category}
+                  </Badge>
+                </div>
+                <div className="space-y-4">
+                  <h2 className="text-3xl font-black tracking-tight sm:text-4xl">
+                    {selectedProject.title}
+                  </h2>
+                  <p className="max-w-2xl text-lg leading-8 text-muted-foreground">
+                    {selectedProject.desc}
+                  </p>
+                </div>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div className="rounded-3xl border border-border bg-background p-6">
+                    <div className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Key result</div>
+                    <div className="mt-3 text-2xl font-black text-foreground">240% growth</div>
+                  </div>
+                  <div className="rounded-3xl border border-border bg-background p-6">
+                    <div className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Timeline</div>
+                    <div className="mt-3 text-2xl font-black text-foreground">8 weeks</div>
+                  </div>
+                </div>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {selectedProject.tech.map((tech) => (
+                    <span
+                      key={tech}
+                      className="rounded-full border border-border bg-background px-3 py-2 text-sm text-foreground/90"
+                    >
+                      {tech}
+                    </span>
                   ))}
                 </div>
               </div>
-              <div className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-xl bg-primary text-primary-foreground opacity-0 transition-opacity group-hover:opacity-100">
-                <MoveRight className="h-4 w-4" />
+              <div className="rounded-[2rem] overflow-hidden border border-border bg-muted">
+                <img
+                  src={selectedProject.img}
+                  alt={selectedProject.title}
+                  className="h-full w-full object-cover"
+                />
               </div>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
+            </div>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-end">
+              <Dialog.Close asChild>
+                <button
+                  type="button"
+                  className="inline-flex items-center justify-center rounded-xl border border-input bg-background px-5 py-3 text-sm font-medium text-foreground transition hover:bg-accent"
+                >
+                  Close
+                </button>
+              </Dialog.Close>
+              <Dialog.Close asChild>
+                <button
+                  type="button"
+                  className="inline-flex items-center justify-center rounded-xl bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition hover:bg-primary/90"
+                >
+                  Start a project
+                </button>
+              </Dialog.Close>
+            </div>
+          </Dialog.Content>
+        </Dialog.Portal>
+      )}
+    </Dialog.Root>
   );
 }
 
@@ -363,7 +629,10 @@ function Services() {
         <SectionHeader kicker="Services" title="How I can help you" />
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((s) => (
-            <div key={s.title} className="glass group rounded-3xl p-6 transition-all hover:-translate-y-1 hover:border-primary/50">
+            <div
+              key={s.title}
+              className="glass group rounded-3xl p-6 transition-all hover:-translate-y-1 hover:border-primary/50"
+            >
               <div className="grid h-12 w-12 place-items-center rounded-2xl bg-primary/15 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                 <s.icon className="h-5 w-5" />
               </div>
@@ -385,7 +654,9 @@ function Certs() {
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {certs.map((c) => (
             <div key={c.title} className="glass rounded-3xl p-6">
-              <div className="text-xs font-semibold uppercase tracking-wider text-primary">{c.year}</div>
+              <div className="text-xs font-semibold uppercase tracking-wider text-primary">
+                {c.year}
+              </div>
               <h3 className="mt-2 font-bold leading-snug">{c.title}</h3>
               <div className="mt-1 text-sm text-muted-foreground">{c.org}</div>
             </div>
@@ -408,7 +679,10 @@ function Testimonials() {
               <p className="mt-3 text-base leading-relaxed text-foreground/90">"{t.quote}"</p>
               <div className="mt-5 flex items-center gap-3 border-t border-border pt-4">
                 <div className="grid h-10 w-10 place-items-center rounded-full bg-primary/15 text-sm font-bold text-primary">
-                  {t.name.split(" ").map((w) => w[0]).join("")}
+                  {t.name
+                    .split(" ")
+                    .map((w) => w[0])
+                    .join("")}
                 </div>
                 <div>
                   <div className="text-sm font-semibold">{t.name}</div>
@@ -440,40 +714,82 @@ function Contact() {
     }, 800);
   };
   const channels = [
-    { icon: Mail, label: "Email", value: "alex@morgandev.com", href: "mailto:alex@morgandev.com" },
-    { icon: Phone, label: "Phone", value: "+1 (415) 555-0199", href: "tel:+14155550199" },
-    { icon: MessageCircle, label: "WhatsApp", value: "Chat on WhatsApp", href: "https://wa.me/14155550199" },
-    { icon: Linkedin, label: "LinkedIn", value: "linkedin.com/in/alexmorgan", href: "https://linkedin.com" },
-    { icon: Github, label: "GitHub", value: "github.com/alexmorgan", href: "https://github.com" },
-    { icon: MapPin, label: "Based in", value: "San Francisco · Remote worldwide" },
+    { icon: Mail, label: "Email", value: "codewithsmith86@gmail.com", href: "mailto:codewithsmith86@gmail.com" },
+    { icon: Phone, label: "Phone", value: "+92 318-7559-232", href: "tel:03187559232" },
+    {
+      icon: MessageCircle,
+      label: "WhatsApp",
+      value: "Chat on WhatsApp",
+      href: "https://wa.me/14155550199",
+    },
+    {
+      icon: Linkedin,
+      label: "LinkedIn",
+      value: "www.linkedin.com/in/waqas2552",
+      href: "www.linkedin.com/in/waqas2552",
+    },
+    { icon: Github, label: "GitHub", value: "https://github.com/waqas3552", href: "https://github.com/waqas3552" },
+    { icon: MapPin, label: "Based in", value: "Johar Town Lahore" },
   ];
 
   return (
     <section id="contact" className="relative py-24">
       <div className="mx-auto max-w-6xl px-6">
-        <SectionHeader kicker="Contact" title="Let's build something great." sub="Tell me about your WordPress project — I usually reply within 24 hours." />
+        <SectionHeader
+          kicker="Contact"
+          title="Let's build something great."
+          sub="Tell me about your WordPress project — I usually reply within 24 hours."
+        />
         <div className="grid gap-6 lg:grid-cols-[1.1fr_1fr]">
           <form onSubmit={onSubmit} className="glass-strong space-y-4 rounded-3xl p-7">
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
                 <label className="text-xs font-medium text-muted-foreground">Name</label>
-                <Input required placeholder="Your name" className="mt-1.5 h-11 rounded-xl bg-background/50" />
+                <Input
+                  required
+                  placeholder="Your name"
+                  className="mt-1.5 h-11 rounded-xl bg-background/50"
+                />
               </div>
               <div>
                 <label className="text-xs font-medium text-muted-foreground">Email</label>
-                <Input required type="email" placeholder="you@company.com" className="mt-1.5 h-11 rounded-xl bg-background/50" />
+                <Input
+                  required
+                  type="email"
+                  placeholder="you@company.com"
+                  className="mt-1.5 h-11 rounded-xl bg-background/50"
+                />
               </div>
             </div>
             <div>
               <label className="text-xs font-medium text-muted-foreground">Subject</label>
-              <Input placeholder="New WooCommerce store, redesign, etc." className="mt-1.5 h-11 rounded-xl bg-background/50" />
+              <Input
+                placeholder="New WooCommerce store, redesign, etc."
+                className="mt-1.5 h-11 rounded-xl bg-background/50"
+              />
             </div>
             <div>
               <label className="text-xs font-medium text-muted-foreground">Project details</label>
-              <Textarea required rows={5} placeholder="Tell me about goals, timeline and budget…" className="mt-1.5 rounded-xl bg-background/50" />
+              <Textarea
+                required
+                rows={5}
+                placeholder="Tell me about goals, timeline and budget…"
+                className="mt-1.5 rounded-xl bg-background/50"
+              />
             </div>
-            <Button type="submit" size="lg" disabled={sending} className="glow-ring w-full rounded-xl">
-              {sending ? "Sending…" : <>Send message <Send className="ml-1 h-4 w-4" /></>}
+            <Button
+              type="submit"
+              size="lg"
+              disabled={sending}
+              className="glow-ring w-full rounded-xl"
+            >
+              {sending ? (
+                "Sending…"
+              ) : (
+                <>
+                  Send message <Send className="ml-1 h-4 w-4" />
+                </>
+              )}
             </Button>
           </form>
           <div className="space-y-3">
@@ -489,10 +805,14 @@ function Contact() {
                     <c.icon className="h-5 w-5" />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <div className="text-xs uppercase tracking-wider text-muted-foreground">{c.label}</div>
+                    <div className="text-xs uppercase tracking-wider text-muted-foreground">
+                      {c.label}
+                    </div>
                     <div className="truncate text-sm font-semibold">{c.value}</div>
                   </div>
-                  {c.href && <ArrowRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-1" />}
+                  {c.href && (
+                    <ArrowRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-1" />
+                  )}
                 </Comp>
               );
             })}
@@ -509,9 +829,15 @@ function Footer() {
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 text-sm text-muted-foreground sm:flex-row">
         <div>© 2026 Alex Morgan. Crafted with WordPress &amp; care.</div>
         <div className="flex items-center gap-4">
-          <a href="#" className="hover:text-foreground"><Github className="h-4 w-4" /></a>
-          <a href="#" className="hover:text-foreground"><Linkedin className="h-4 w-4" /></a>
-          <a href="#contact" className="hover:text-foreground"><Mail className="h-4 w-4" /></a>
+          <a href="#" className="hover:text-foreground">
+            <Github className="h-4 w-4" />
+          </a>
+          <a href="#" className="hover:text-foreground">
+            <Linkedin className="h-4 w-4" />
+          </a>
+          <a href="#contact" className="hover:text-foreground">
+            <Mail className="h-4 w-4" />
+          </a>
         </div>
       </div>
     </footer>

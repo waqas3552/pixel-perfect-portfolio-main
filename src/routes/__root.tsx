@@ -79,9 +79,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Alex Morgan — Senior WordPress Developer | 5+ Years Experience" },
-      { name: "description", content: "Senior WordPress developer specializing in WooCommerce, custom themes, Elementor, ACF, performance & SEO. 5+ years building fast, secure, conversion-focused sites." },
+      {
+        name: "description",
+        content:
+          "Senior WordPress developer specializing in WooCommerce, custom themes, Elementor, ACF, performance & SEO. 5+ years building fast, secure, conversion-focused sites.",
+      },
       { property: "og:title", content: "Alex Morgan — Senior WordPress Developer" },
-      { property: "og:description", content: "WordPress · WooCommerce · Elementor · Performance · SEO. Hire a senior WP developer." },
+      {
+        property: "og:description",
+        content:
+          "WordPress · WooCommerce · Elementor · Performance · SEO. Hire a senior WP developer.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -89,7 +97,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap",
+      },
     ],
   }),
   shellComponent: RootShell,
